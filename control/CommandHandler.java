@@ -23,7 +23,8 @@ public class CommandHandler {
 		availableCommands.put("go", new MoveCommand());
 		availableCommands.put("quit", new QuitCommand());
 		availableCommands.put("move", new MoveCommand());
-		availableCommands.put("look",  new LookCommand()); 
+		availableCommands.put("look",  new LookCommand());
+		availableCommands.put("shops", new ListShopCommand());
 	}
 	
 	private ArrayList<String> popArrayList () {

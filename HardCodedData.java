@@ -3,6 +3,7 @@ package mazegame;
 import mazegame.boundary.IMazeData;
 import mazegame.entity.Exit;
 import mazegame.entity.Location;
+import mazegame.entity.Shop;
 
 public class HardCodedData implements IMazeData {
 	private Location startUp;
@@ -41,6 +42,25 @@ public class HardCodedData implements IMazeData {
 
         lounge.addExit("northwest", new Exit("you see a terrifying office to the northwest", gregsOffice));
         gregsOffice.addExit("southeast", new Exit("you see an open space to the southeast", lounge));
+        
+        // add shots to the locations
+        startUp.addShop(new Shop("Shop1"));
+        startUp.addShop(new Shop("Shop2"));
+        startUp.addShop(new Shop("Shop3"));
+        
+        
+        lounge.addShop(new Shop("Shop4"));
+        lounge.addShop(new Shop("Shop5"));
+        lounge.addShop(new Shop("Shop6"));
+        
+        t127.addShop(new Shop("shop7"));
+        t127.addShop(new Shop("shop8"));
+        t127.addShop(new Shop("shop9"));
+        
+        gregsOffice.addShop(new Shop("shop10"));
+        gregsOffice.addShop(new Shop("shop11"));
+        gregsOffice.addShop(new Shop("shop12"));
+        gregsOffice.addShop(new Shop("shop13"));
 			
 	}
 }

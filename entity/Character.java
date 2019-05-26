@@ -7,7 +7,7 @@ public class Character {
     private int lifePoints;
     private String name;
     private int strength;
-    private ArrayList<Weapon> weapons;
+    private ArrayList<Item> weapons;
     
 //    public Mazegame.Entity.Dice m_Dice;
 //    public Mazegame.Entity.Party m_Party;
@@ -41,11 +41,11 @@ public class Character {
 		this.lifePoints = lifePoints;
 	}
 	
-	public ArrayList<Weapon> getWeapons() {
+	public ArrayList<Item> getWeapons() {
 		return this.weapons;
 	}
 	
-	public void addWeapon(Weapon wp) {
+	public void addWeapon(Item wp) {
 		this.weapons.add(wp);
 	}
 

@@ -1,14 +1,15 @@
 package mazegame.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Shop {
 	private String name;
-	private ArrayList<Weapon> weapons;
+	private HashMap<String,Item> weapons;
 	
 	public Shop(String name){
 		this.name = name;
-		this.weapons = new ArrayList<>();
+		this.weapons = new HashMap<String, Item>();
 	}
 	
 	public String getName() {
@@ -17,20 +18,30 @@ public class Shop {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Weapon> getWeapons() {
-		return weapons;
+	public HashMap<String,Item> getWeapons() {
+		return this.weapons;
 	}
-	public void setWeapons(ArrayList<Weapon> weapons) {
+	public void setWeapons(HashMap<String,Item> weapons) {
 		this.weapons = weapons;
 	}
 	
-	public void addWeapon(Weapon weapon){
-		this.weapons.add(weapon);
-	}	
-	public void listWeapon(){
-		for(Weapon w: this.weapons) {
-			System.out.print(w);
+	public boolean addWeapon(String label,Item weapon){
+		if(this.weapons.containsKey(label)){
+			return false;
 		}
+		this.weapons.put(label, weapon);
+		return true;
+	}	
+	
+	public Item getWeapon(String label) {
+		return this.weapons.get(label);
+	}
+	public String listWeapon(){
+		StringBuilder returnMsg = new StringBuilder();
+		for(Item item: this.weapons.values()) {
+			returnMsg.append(item.toString() + "\n");
+		}			
+        return returnMsg.toString();
 	}
 	
 	public String toString() {

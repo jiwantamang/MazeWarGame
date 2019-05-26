@@ -24,7 +24,10 @@ public class CommandHandler {
 		availableCommands.put("quit", new QuitCommand());
 		availableCommands.put("move", new MoveCommand());
 		availableCommands.put("look",  new LookCommand());
-		availableCommands.put("shops", new ListShopCommand());
+		availableCommands.put("select-shop", new SelectShopCommand());
+		availableCommands.put("list-items", new ListItemCommand());
+		availableCommands.put("list-shop-items", new ListShopItemCommand());
+		availableCommands.put("purchase-item", new PurchaseItemCommand());
 	}
 	
 	private ArrayList<String> popArrayList () {

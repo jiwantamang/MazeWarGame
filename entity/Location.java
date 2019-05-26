@@ -7,7 +7,9 @@ public class Location {
 	private HashMap exits;
 	private String description;
 	private String label;
-	private HashMap shops;
+	private HashMap<String, Shop> shops;
+	private Shop selectShop;
+	private HashMap<String, Item> items;
 	
 	public Location () { }
 	
@@ -17,7 +19,8 @@ public class Location {
 		this.setLabel(label);
 		exits = new HashMap();
 		// initialize a weapon list
-		this.shops = new HashMap<>();
+		this.shops = new HashMap<>();	
+		this.items = new HashMap<>();
 	}
 	
 	public boolean addExit (String exitLabel, Exit theExit)
@@ -60,12 +63,12 @@ public class Location {
         return returnMsg.toString();
 	}
 	
-	public boolean addShop(Shop shop) {
+	public boolean addShop(String label, Shop shop) {
 		if(this.shops.containsKey(shop.getName())){
 			return false;
 		}
 		
-		this.shops.put(shop.getName(), shop);
+		this.shops.put(label, shop);		
 		return true;
 	}
 	
@@ -88,7 +91,39 @@ public class Location {
         }
         return returnMsg.toString();
 	}
+	
+	public void setSelectedShop(Shop shop) {
+		this.selectShop = shop;
+	}
+	
+	public Shop getSelectedShop(){
+		return this.selectShop;
+	}
 		
+	public HashMap<String, Item> getItems() {
+		return items;
+	}
+	
+	public boolean addItem(String label, Item item) {
+		if(this.items.containsKey(label)){
+			return false;
+		}
+		this.items.put(label,  item);
+		return true;
+	}
+
+	public void setItems(HashMap<String, Item> items) {
+		this.items = items;
+	}
+	
+	public String listItems() {	
+		StringBuilder returnMsg = new StringBuilder();
+		for(Item item: this.items.values()) {
+			returnMsg.append(item.toString() + "\n");
+		}			
+        return returnMsg.toString();
+	}
+
 	public String toString() {
 	        return "**********\n" + this.label + "\n**********\n"
 	            + "Exits found :: " + availableExits() + "\n**********\n"

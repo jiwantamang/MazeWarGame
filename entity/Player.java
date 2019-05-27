@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Player extends Character {	
 	private Location currentLocation;
 	private HashMap<String, Item> items;
+	private Item equipedItem;
 
     public Player()
     {
@@ -34,6 +35,15 @@ public class Player extends Character {
 			return false;
 		this.items.put(label, item);
 		return true;
+	}
+	
+	public boolean dropItem(String label){
+		if(this.items.containsKey(label)){
+			this.items.remove(label);
+			return true;
+		}
+		
+		return false;
 	}
 
 	public void setItems(HashMap<String, Item> items) {
@@ -67,4 +77,30 @@ public class Player extends Character {
 		return true;
 	}
 	
+	public void sellItem(String itemName){
+		this.currentLocation.getSelectedShop().sellItem(itemName);
+		
+		// remove item from a items
+		if(this.items.containsKey(itemName)){
+			this.items.remove(itemName);
+		}
+	}
+
+	public boolean isItemAvailable(String itemname) {
+		if(this.items.containsKey(itemname)) return true;
+		return false;
+	}
+	
+	public Item getEquipedItem() {
+		return equipedItem;
+	}
+
+	public void setEquipedItem(String itemname) {
+		Item item = this.items.get(itemname);
+		this.equipedItem = item;
+	}
+	
+	public void setUnequipedItem(){
+		this.equipedItem = null;
+	}
 }

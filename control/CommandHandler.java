@@ -28,6 +28,12 @@ public class CommandHandler {
 		availableCommands.put("list-items", new ListItemCommand());
 		availableCommands.put("list-shop-items", new ListShopItemCommand());
 		availableCommands.put("purchase-item", new PurchaseItemCommand());
+		availableCommands.put("drop-item", new DropItemCommand());
+		availableCommands.put("sell-item", new SellItemCommand());
+		availableCommands.put("mazestatus", new MazeStatusCommand());
+		availableCommands.put("equip-item", new EquipItemCommand());
+		availableCommands.put("unequip-item", new UnEquipItemCommand());
+		
 	}
 	
 	private ArrayList<String> popArrayList () {
@@ -42,6 +48,19 @@ public class CommandHandler {
 	public CommandResponse processTurn (String userInput, Player thePlayer) {
 		ParsedInput validInput = theParser.parse(userInput);
 		Command theCommand = (Command) availableCommands.get(validInput.getCommand());
+		if(theCommand == null) 
+		{
+			this.helpMenu();
+			return new CommandResponse("\n\nInvalid Command");			
+		}			
 		return theCommand.execute(validInput, thePlayer);
 	}
+	
+	public void helpMenu(){
+		System.out.println("Available Commands");
+		for(String key: this.availableCommands.keySet()){			
+			System.out.println(key);
+		}
+	}
+	// if invalid command list help menu
 }

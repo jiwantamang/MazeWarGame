@@ -44,6 +44,9 @@ public class Shop {
         return returnMsg.toString();
 	}
 	
+	public void sellItem(String item) {		
+	}
+	
 	public String toString() {
 		return new String(name);
 	}

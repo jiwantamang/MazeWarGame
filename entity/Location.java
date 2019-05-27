@@ -92,6 +92,16 @@ public class Location {
         return returnMsg.toString();
 	}
 	
+	public String getStatus() {
+		StringBuilder returnMsg = new StringBuilder();
+		returnMsg.append("\n Location = "+ this.label);
+		if(this.selectShop != null)
+			returnMsg.append("\n Shop = "+ this.selectShop.getName());
+		else 
+			returnMsg.append("\n Shop = Not selected yet");
+		return new String(returnMsg);
+	}
+	
 	public void setSelectedShop(Shop shop) {
 		this.selectShop = shop;
 	}

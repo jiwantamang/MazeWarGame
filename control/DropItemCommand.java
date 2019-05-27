@@ -7,7 +7,15 @@ public class DropItemCommand implements Command{
 	@Override
 	public CommandResponse execute(ParsedInput userInput, Player thePlayer) {
 		response = new CommandResponse("Syntax Error : drop-item <itemname>");
-		return null;
+		if(userInput.getArguments().size() == 1){
+			String dropItemName = userInput.getArguments().get(0).toString();
+			if(thePlayer.dropItem(dropItemName)){
+				response.setMessage("Item dropped: "+dropItemName);
+			}else{
+				response.setMessage("You does not have this item: "+dropItemName);
+			}		
+		}
+		return response;
 	}
 
 }
